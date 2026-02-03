@@ -11,15 +11,15 @@ enum LogCategory {
   String get displayName {
     switch (this) {
       case LogCategory.application:
-        return 'تطبيقات';
+        return 'Applications';
       case LogCategory.system:
-        return 'نظام';
+        return 'System';
       case LogCategory.security:
-        return 'أمان';
+        return 'Security';
       case LogCategory.hardware:
-        return 'هاردوير';
+        return 'Hardware';
       case LogCategory.all:
-        return 'الكل';
+        return 'All';
     }
   }
 
@@ -62,7 +62,15 @@ class LogEntry extends Equatable {
   });
 
   @override
-  List<Object?> get props => [id, message, timestamp, category, source, priority, processId];
+  List<Object?> get props => [
+    id,
+    message,
+    timestamp,
+    category,
+    source,
+    priority,
+    processId,
+  ];
 
   /// Check if log matches search query
   bool matchesQuery(String query) {

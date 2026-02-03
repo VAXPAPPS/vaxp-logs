@@ -20,11 +20,11 @@ class LogDetailPage extends StatelessWidget {
       backgroundColor: const Color.fromARGB(188, 0, 0, 0),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(188, 30, 30, 30),
-        title: const Text('تفاصيل السجل'),
+        title: const Text('Log Details'),
         actions: [
           IconButton(
             icon: const Icon(Icons.copy),
-            tooltip: 'نسخ',
+            tooltip: 'Copy',
             onPressed: () => _copyToClipboard(context),
           ),
         ],
@@ -54,20 +54,20 @@ class LogDetailPage extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 16),
-                    
+
                     // Source
                     _buildInfoRow(
                       Icons.source,
-                      'المصدر',
+                      'Source',
                       log.source,
                       categoryColor,
                     ),
                     const Divider(height: 24, color: Colors.grey),
-                    
+
                     // Timestamp
                     _buildInfoRow(
                       Icons.access_time,
-                      'الوقت',
+                      'Time',
                       dateTimeFormat.format(log.timestamp),
                       VaxpColors.primaryColor,
                     ),
@@ -87,10 +87,13 @@ class LogDetailPage extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const Icon(Icons.message, color: VaxpColors.primaryColor),
+                        const Icon(
+                          Icons.message,
+                          color: VaxpColors.primaryColor,
+                        ),
                         const SizedBox(width: 8),
                         const Text(
-                          'الرسالة',
+                          'Message',
                           style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
@@ -101,7 +104,7 @@ class LogDetailPage extends StatelessWidget {
                         IconButton(
                           icon: const Icon(Icons.copy, size: 18),
                           onPressed: () => _copyMessage(context),
-                          tooltip: 'نسخ الرسالة',
+                          tooltip: 'Copy Message',
                         ),
                       ],
                     ),
@@ -138,7 +141,7 @@ class LogDetailPage extends StatelessWidget {
               child: ExpansionTile(
                 leading: const Icon(Icons.code, color: Colors.grey),
                 title: const Text(
-                  'السطر الخام',
+                  'Raw Line',
                   style: TextStyle(color: Colors.white70),
                 ),
                 children: [
@@ -224,11 +227,7 @@ class LogDetailPage extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: TextStyle(
-          fontSize: 12,
-          color: color,
-          fontFamily: 'monospace',
-        ),
+        style: TextStyle(fontSize: 12, color: color, fontFamily: 'monospace'),
       ),
     );
   }
@@ -238,10 +237,7 @@ class LogDetailPage extends StatelessWidget {
       children: [
         Icon(icon, size: 20, color: color),
         const SizedBox(width: 12),
-        Text(
-          label,
-          style: TextStyle(color: Colors.grey[400], fontSize: 14),
-        ),
+        Text(label, style: TextStyle(color: Colors.grey[400], fontSize: 14)),
         const SizedBox(width: 8),
         Expanded(
           child: Text(
@@ -291,22 +287,23 @@ class LogDetailPage extends StatelessWidget {
   }
 
   void _copyToClipboard(BuildContext context) {
-    final text = '''
-الفئة: ${log.category.displayName}
-المصدر: ${log.source}
-الوقت: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(log.timestamp)}
-الأولوية: ${log.priority}
+    final text =
+        '''
+Category: ${log.category.displayName}
+Source: ${log.source}
+Time: ${DateFormat('yyyy-MM-dd HH:mm:ss').format(log.timestamp)}
+Priority: ${log.priority}
 ${log.processId != null ? 'PID: ${log.processId}\n' : ''}
-الرسالة:
+Message:
 ${log.message}
 
-السطر الخام:
+Raw Line:
 ${log.rawLine}
 ''';
     Clipboard.setData(ClipboardData(text: text));
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('تم نسخ السجل'),
+        content: Text('Log copied'),
         duration: Duration(seconds: 2),
       ),
     );
@@ -316,7 +313,7 @@ ${log.rawLine}
     Clipboard.setData(ClipboardData(text: log.message));
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('تم نسخ الرسالة'),
+        content: Text('Message copied'),
         duration: Duration(seconds: 2),
       ),
     );

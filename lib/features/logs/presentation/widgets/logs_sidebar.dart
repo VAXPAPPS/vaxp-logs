@@ -47,7 +47,7 @@ class LogsSidebar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'السجلات',
+                      'Logs',
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -55,18 +55,15 @@ class LogsSidebar extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'عارض سجلات النظام',
-                      style: TextStyle(
-                        fontSize: 11,
-                        color: Colors.white54,
-                      ),
+                      'System Logs Viewer',
+                      style: TextStyle(fontSize: 11, color: Colors.white54),
                     ),
                   ],
                 ),
               ],
             ),
           ),
-          
+
           const Divider(color: Colors.white10, height: 1),
           const SizedBox(height: 8),
 
@@ -75,13 +72,15 @@ class LogsSidebar extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.symmetric(horizontal: 8),
               children: [
-                _buildSectionHeader('الفئات'),
-                ...LogCategory.values.map((category) => _buildCategoryItem(
-                  category: category,
-                  count: counts[category] ?? 0,
-                  isSelected: selectedCategory == category,
-                  onTap: () => onCategorySelected(category),
-                )),
+                _buildSectionHeader('Categories'),
+                ...LogCategory.values.map(
+                  (category) => _buildCategoryItem(
+                    category: category,
+                    count: counts[category] ?? 0,
+                    isSelected: selectedCategory == category,
+                    onTap: () => onCategorySelected(category),
+                  ),
+                ),
               ],
             ),
           ),
@@ -89,24 +88,15 @@ class LogsSidebar extends StatelessWidget {
           // Footer with stats
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.2),
-            ),
+            decoration: BoxDecoration(color: Colors.black.withOpacity(0.2)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.storage,
-                  size: 14,
-                  color: Colors.grey[500],
-                ),
+                Icon(Icons.storage, size: 14, color: Colors.grey[500]),
                 const SizedBox(width: 6),
                 Text(
-                  '${counts[LogCategory.all] ?? 0} سجل',
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey[400],
-                  ),
+                  '${counts[LogCategory.all] ?? 0} logs',
+                  style: TextStyle(fontSize: 12, color: Colors.grey[400]),
                 ),
               ],
             ),
@@ -138,7 +128,7 @@ class LogsSidebar extends StatelessWidget {
     required VoidCallback onTap,
   }) {
     final color = VaxpColors.getCategoryColor(category.englishName);
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Material(
@@ -150,14 +140,10 @@ class LogsSidebar extends StatelessWidget {
             duration: const Duration(milliseconds: 200),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             decoration: BoxDecoration(
-              color: isSelected 
-                  ? color.withOpacity(0.15) 
-                  : Colors.transparent,
+              color: isSelected ? color.withOpacity(0.15) : Colors.transparent,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: isSelected 
-                    ? color.withOpacity(0.3) 
-                    : Colors.transparent,
+                color: isSelected ? color.withOpacity(0.3) : Colors.transparent,
                 width: 1,
               ),
             ),
@@ -167,8 +153,8 @@ class LogsSidebar extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
-                    color: isSelected 
-                        ? color.withOpacity(0.2) 
+                    color: isSelected
+                        ? color.withOpacity(0.2)
                         : Colors.white.withOpacity(0.05),
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -179,26 +165,31 @@ class LogsSidebar extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10),
-                
+
                 // Label
                 Expanded(
                   child: Text(
                     category.displayName,
                     style: TextStyle(
                       fontSize: 13,
-                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.normal,
                       color: isSelected ? color : Colors.grey[300],
                     ),
                   ),
                 ),
-                
+
                 // Count badge
                 if (count > 0)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
-                      color: isSelected 
-                          ? color.withOpacity(0.2) 
+                      color: isSelected
+                          ? color.withOpacity(0.2)
                           : Colors.white.withOpacity(0.05),
                       borderRadius: BorderRadius.circular(10),
                     ),

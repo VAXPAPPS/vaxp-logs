@@ -87,7 +87,7 @@ class _LogsPageState extends State<LogsPage> {
         },
         style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
-          hintText: 'البحث في السجلات...',
+          hintText: 'Search logs...',
           hintStyle: TextStyle(color: Colors.grey[500]),
           prefixIcon: const Icon(Icons.search, color: Colors.grey),
           suffixIcon: Row(
@@ -105,10 +105,11 @@ class _LogsPageState extends State<LogsPage> {
                 builder: (context, state) {
                   return IconButton(
                     icon: const Icon(Icons.refresh, color: Colors.grey),
-                    tooltip: 'تحديث',
+                    tooltip: 'Refresh',
                     onPressed: state is LogsLoading
                         ? null
-                        : () => context.read<LogsBloc>().add(const RefreshLogs()),
+                        : () =>
+                              context.read<LogsBloc>().add(const RefreshLogs()),
                   );
                 },
               ),
@@ -122,7 +123,10 @@ class _LogsPageState extends State<LogsPage> {
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(color: VaxpColors.secondary, width: 1.3),
+            borderSide: const BorderSide(
+              color: VaxpColors.secondary,
+              width: 1.3,
+            ),
           ),
         ),
       ),
@@ -150,22 +154,22 @@ class _LogsPageState extends State<LogsPage> {
               Icon(Icons.list, size: 18, color: Colors.grey[500]),
               const SizedBox(width: 6),
               Text(
-                '${state.filteredLogs.length} سجل',
-                style: TextStyle(
-                  color: Colors.grey[400],
-                  fontSize: 13,
-                ),
+                '${state.filteredLogs.length} logs',
+                style: TextStyle(color: Colors.grey[400], fontSize: 13),
               ),
               if (state.searchQuery.isNotEmpty) ...[
                 const SizedBox(width: 12),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 2,
+                  ),
                   decoration: BoxDecoration(
                     color: VaxpColors.secondary.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
-                    'بحث: ${state.searchQuery}',
+                    'Search: ${state.searchQuery}',
                     style: const TextStyle(
                       color: VaxpColors.secondary,
                       fontSize: 12,
@@ -190,10 +194,7 @@ class _LogsPageState extends State<LogsPage> {
               children: [
                 CircularProgressIndicator(color: VaxpColors.secondary),
                 SizedBox(height: 16),
-                Text(
-                  'جاري تحميل السجلات...',
-                  style: TextStyle(color: Colors.grey),
-                ),
+                Text('Loading logs...', style: TextStyle(color: Colors.grey)),
               ],
             ),
           );
@@ -204,7 +205,11 @@ class _LogsPageState extends State<LogsPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Icon(Icons.error_outline, size: 64, color: VaxpColors.errorColor),
+                const Icon(
+                  Icons.error_outline,
+                  size: 64,
+                  color: VaxpColors.errorColor,
+                ),
                 const SizedBox(height: 16),
                 Text(
                   state.message,
@@ -213,9 +218,10 @@ class _LogsPageState extends State<LogsPage> {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton.icon(
-                  onPressed: () => context.read<LogsBloc>().add(const LoadLogs()),
+                  onPressed: () =>
+                      context.read<LogsBloc>().add(const LoadLogs()),
                   icon: const Icon(Icons.refresh),
-                  label: const Text('إعادة المحاولة'),
+                  label: const Text('Retry'),
                 ),
               ],
             ),
@@ -232,12 +238,9 @@ class _LogsPageState extends State<LogsPage> {
                   const SizedBox(height: 16),
                   Text(
                     state.searchQuery.isNotEmpty
-                        ? 'لا توجد نتائج للبحث'
-                        : 'لا توجد سجلات',
-                    style: TextStyle(
-                      color: Colors.grey[400],
-                      fontSize: 16,
-                    ),
+                        ? 'No search results'
+                        : 'No logs found',
+                    style: TextStyle(color: Colors.grey[400], fontSize: 16),
                   ),
                 ],
               ),
@@ -273,10 +276,8 @@ class _LogsPageState extends State<LogsPage> {
   }
 
   void _showLogDetail(BuildContext context, LogEntry log) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (_) => LogDetailPage(log: log),
-      ),
-    );
+    Navigator.of(
+      context,
+    ).push(MaterialPageRoute(builder: (_) => LogDetailPage(log: log)));
   }
 }
