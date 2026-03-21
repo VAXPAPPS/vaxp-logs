@@ -165,7 +165,7 @@ class _LogsPageState extends State<LogsPage> {
                     vertical: 2,
                   ),
                   decoration: BoxDecoration(
-                    color: VaxpColors.secondary.withOpacity(0.2),
+                    color: VaxpColors.secondary.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(

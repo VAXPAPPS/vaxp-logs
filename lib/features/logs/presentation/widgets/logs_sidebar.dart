@@ -21,7 +21,7 @@ class LogsSidebar extends StatelessWidget {
     return Container(
       width: 220,
       decoration: BoxDecoration(
-        color: VaxpColors.glassSurface.withOpacity(0.1),
+        color: VaxpColors.glassSurface.withValues(alpha: 0.1),
       ),
       child: Column(
         children: [
@@ -33,7 +33,7 @@ class LogsSidebar extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: VaxpColors.secondary.withOpacity(0.2),
+                    color: VaxpColors.secondary.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Icon(
@@ -88,7 +88,9 @@ class LogsSidebar extends StatelessWidget {
           // Footer with stats
           Container(
             padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(color: Colors.black.withOpacity(0.2)),
+            decoration: BoxDecoration(
+              color: Colors.black.withValues(alpha: 0.2),
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -140,10 +142,14 @@ class LogsSidebar extends StatelessWidget {
             duration: const Duration(milliseconds: 200),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             decoration: BoxDecoration(
-              color: isSelected ? color.withOpacity(0.15) : Colors.transparent,
+              color: isSelected
+                  ? color.withValues(alpha: 0.15)
+                  : Colors.transparent,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: isSelected ? color.withOpacity(0.3) : Colors.transparent,
+                color: isSelected
+                    ? color.withValues(alpha: 0.3)
+                    : Colors.transparent,
                 width: 1,
               ),
             ),
@@ -154,8 +160,8 @@ class LogsSidebar extends StatelessWidget {
                   padding: const EdgeInsets.all(6),
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? color.withOpacity(0.2)
-                        : Colors.white.withOpacity(0.05),
+                        ? color.withValues(alpha: 0.2)
+                        : Colors.white.withValues(alpha: 0.05),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Icon(
@@ -189,8 +195,8 @@ class LogsSidebar extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: isSelected
-                          ? color.withOpacity(0.2)
-                          : Colors.white.withOpacity(0.05),
+                          ? color.withValues(alpha: 0.2)
+                          : Colors.white.withValues(alpha: 0.05),
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
