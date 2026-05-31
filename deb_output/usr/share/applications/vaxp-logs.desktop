@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=vaxp-logs
+Comment=Flutter Application - vaxp-logs
+Exec=/usr/bin/vaxp-logs
+Icon=/usr/share/icons/hicolor/256x256/apps/vaxp-logs.png
+Terminal=false
+Categories=Utility;Development;
